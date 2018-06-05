@@ -1,5 +1,7 @@
 package io.ca.db.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import io.ca.db.model.Grupo;
@@ -10,5 +12,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long> {
 	boolean exists(String nome);
 
 	Grupo findByNome(String nome);
+
+	List<Grupo> findByNomeStartingWith(String nome);
 	
 }

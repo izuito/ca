@@ -2,8 +2,10 @@ package io.ca.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import io.ca.db.model.Perfil;
 import io.ca.db.model.dto.PerfilDTO;
 import io.ca.db.repository.PerfilRepository;
@@ -98,7 +101,7 @@ public class PerfilController {
 
 	@GetMapping(value="/{nome}/nome")
 	public ResponseEntity<List<PerfilDTO>> get(@PathVariable String nome) {
-		if (nome == null) {
+		if (!StringUtils.hasText(nome)) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
